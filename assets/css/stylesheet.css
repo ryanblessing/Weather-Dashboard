@@ -1,0 +1,14 @@
+* {
+    padding: auto;
+}
+
+header{
+    text-align: center;
+    background-color: navy;
+    color: rgb(253, 253, 253);
+}
+
+main {
+    margin: 20px auto;
+    width: 94%;
+}
