@@ -1,4 +1,4 @@
-<!DOCTYPE>
+<!DOCTYPE html>
 <html>
 
 <head>
@@ -9,25 +9,54 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="./assets/css/stylesheet.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 
 <body>
     <!-- header to start off page-->
-    <header class="display 4">
+    <header class="jumbotron bg-primary text-white ">
         <h1>Weather Dashboard</h1>
     </header>
 
-    <!--Card to show the featured cities-->
-   
+    <div class="container">
+        <!--row to search for cities-->
+        <div class="row-cols-4">
+            <div class="col-md-4">
+                <h3 class="">Search for a City:</h3>
+                <!--creating the input box to get city names-->
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" placeholder="Search City">
+                    <button type="button" class="far fa-hand-spock" id="search-btn"></button>
+                </div>
+                <ul class="list-group">
+
+                </ul>
+            </div>
+        </div>
+        <!--create to hold temp-humidity- wind-uv index-->
+        <div class="col-md-8">
+            <div class="row">
+                <div class="col" id="Now-weather">
+                    <h4 class="city-name" id="current-city">Current Weather Conditions:</h4>
+                    <p>Temperature-</p>
+                    <p>Humidity-</p>
+                    <p>Wind speed-</p>
+                    <p>UV Index-</p>
+                </div>
+            </div>
+        </div>
+
+        <!--displaying the 5 day forecast-->
+        <div class="col-md-6" id="weekly-weather">
+            <h3>Future 5 day Forecast:</h3>
+        </div>
+        
+
+    </div>
 
 
-    <!--divs with 4 loops for 5 day forecast per city-->
-    </main>
 
-
-
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js"></script>
     <script src="./assets/js/JS.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
 </body>
 
 </html>
