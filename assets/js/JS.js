@@ -1,52 +1,53 @@
-//declared varibles to start off my functions
-var citySearch = $("#searchEl");
-var searchBtn = $("#search-btn");
-var currentCity = $("#now-city");
-var temperature = $("#temperature");
-var humidity = $("#humidity");
-var windSpeed = $("wind-speed");
-var uvIndex = $("#uv-index");
-var city = "";
-var cityEl = [];
+$(document).ready(function () {
+    var cityName = "";
+    var lat = "";
+    var lon = "";
+    
+//second api to get longitude and latitude 
+    function getWeatherAPI(a,b){
+        var secondURL = "api.openweathermap.org/data/2.5/weather?lat=" + a + "&lon=" + b +"&appid=6eecb087d2bed95fd59361a4c4bc50be"
 
-//4 loop to find new cities
-for(var i= 0; i < cityEl.length; i++)
+        $.ajax({
+            url:secondURL,
+            method: "GET"
+    }).then(function(response) {
+        console.log(response);
 
-//set up my api keys and my URL
-var APIKey = "6eecb087d2bed95fd59361a4c4bc50be";
-var queryURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&appid=" + APIKey;
+        //clear our the 5 day forecast from last city
+        $("#forecast").event.preventDefault()
 
-$.ajax({
-    url:queryURL,
-    method:"GET",
-}).then(function(response) {
+        var weatherImgDisplay = response.current.weather[0].icon;
+        var weatherImg =$("<img>");
+        weatherImg.attr("src", /*find the stupid https to insert a dang image :/ */)
+        $("#city").append(weatherImg);
+    })
 
-    console.log(response);
+
+
+
+
+
+//first api to find city and and date
+    function findWeather() {
+        var queryURL = "api.openweathermap.org/data/2.5/weather?id=" + cityName + "&appid=6eecb087d2bed95fd59361a4c4bc50be"
+        
+
+        $.ajax({
+            url:queryURL,
+            method: "GET"
+        }).then(function (response) {
+            lat = response.cords.lat;
+            lon = response.cords.lon;
+
+            $("#current-city").text(response.name);
+            $("#date").text.moment().format("MMMM Do YYYY, h:mm:ss a");
+
+                //local storage save
+            localStorage.setItem("cityName", response.name);
+
+            getWeatherAPI(lat,lon);
+        })
+    
+        
+    }
 })
-
-// set up function to display the current weather of the city
-function searchCity()
-
-
-
-function displayWeather()
-
-
-
-
-function nowWeather()
-
-
-
-
-// display the 5 day forecast for whatever city is selected with a 4 loop
-
-
-
-// display all search history
-
-
-
-
-//
-

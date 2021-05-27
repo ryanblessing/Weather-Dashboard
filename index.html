@@ -17,86 +17,67 @@
         <h1>Weather Dashboard</h1>
     </header>
 
-    <div class="container">
+    <main class="container">
         <!--row to search for cities-->
-        <div class="row-cols-4">
-            <div class="col-md-4">
-                <h3 class="">Search for a City:</h3>
-                <!--creating the input box to get city names-->
-                <div class="input-group mb-3" id="searchEl">
-                    <input type="text" class="form-control" placeholder="Search City">
-                    <button type="button" class="far fa-hand-spock" id="search-btn"></button>
+        <nav>
+            <h2>City Search: </h2>
+            <form class="container" id="city-form">
+                <div class="row">
+                    <input id="current-search" class="" type="search" placeholder="Search city">
+                    <button class="btn btn-outline-sucesss" type="submit">Search</button>
                 </div>
-                <ul class="list-group">
+            </form>
+            <section>
+                <ul class="list-group" id="saved-cities">
 
                 </ul>
-            </div>
-        </div>
-        <!--create to hold temp-humidity- wind-uv index-->
-        <div class="col">
-            <div class="row">
-                <div class="col" id="">
-                    <h4 class="city-name" id="now-city"></h4>
-                    <p>Current Weather Conditions:</p>
-                    <p id="temperature">Temperature-</p>
-                    <p id="humidity">Humidity-</p>
-                    <p id="wind-speed">Wind speed-</p>
-                    <p id="uv-index">UV Index-</p>
-                </div>
-            </div>
-        </div>
-
-        <!--displaying the 5 day forecast-->
-        <div class="col" id="weekly-weather">
-            <h3>Future 5 day Forecast:</h3>
-            <div class="row">
-                <div class="col">
-                    <p id="future-date0"></p>
-                    <p id="future-temperature0">TEMP:</p>
-                    <p id="future-humidity0">HUMIDITY:</p>
-                    <p id="future-wind0">WIND:</p>
-                    <p id="future-uv0">UV-INDEX</p>
-                </div>
-                <div class="col">
-                    <p id="future-date1"></p>
-                    <p id="future-temperature1">TEMP:</p>
-                    <p id="future-humidity1">HUMIDITY:</p>
-                    <p id="future-wind1">WIND:</p>
-                    <p id="future-uv1">UV-INDEX</p>
-                </div>
-                <div class="col">
-                    <p id="future-date2"></p>
-                    <p id="future-temperature2">TEMP:</p>
-                    <p id="future-humidity2">HUMIDITY:</p>
-                    <p id="future-wind2">WIND:</p>
-                    <p id="future-uv2">UV-INDEX</p>
-                </div>
-                <div class="col">
-                    <p id="future-date3"></p>
-                    <p id="future-temperature3">TEMP:</p>
-                    <p id="future-humidity3">HUMIDITY:</p>
-                    <p id="future-wind3">WIND:</p>
-                    <p id="future-uv3">UV-INDEX</p>
-                </div>
-                <div class="col">
-                    <p id="future-date4"></p>
-                    <p id="future-temperature4">TEMP:</p>
-                    <p id="future-humidity4">HUMIDITY:</p>
-                    <p id="future-wind4">WIND:</p>
-                    <p id="future-uv4">UV-INDEX</p>
-                </div>
-            </div>
-        </div>
+            </section>
 
 
-    </div>
+            <!--create to hold temp-humidity- wind-uv index-->
+            <div class="col">
+                <div class="row">
+                    <div class="col" id="">
+                        <h4 id="current-city"></h4>
+                        <h3 id="date"></h3>
+                        <p>Current Weather Conditions:</p>
+                        <p id="temperature">Temperature-</p>
+                        <p id="humidity">Humidity-</p>
+                        <p id="wind-speed">Wind speed-</p>
+                        <p id="uv-index">UV Index-</p>
+                    </div>
+                    <section class="container" id="saved-cities">
+                        <div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+
+            <div class="col-lg-8">
+                <section class="card p-2" id="current" style="display:none;">
+                    <h1 id="city"></h1>
+                    <h5 id="date"></h5>
+                    <p id="temp"></p>
+                    <p id="humidity"></p>
+                    <p id="wind"></p>
+                    <p id="uv-index">UV Index: <span class="color"></span></p>
+                </section>
+                <!--5-day forecast-->
+                <section class="mt-2 mb-2" id="five-day" style="display:none;">
+                    <h3>5-Day Forecast:</h3>
+                    <div class="card-deck">
+                    </div>
+                </section>
+            </div>
+
+    </main>
     <footer>
         <div>
-            
+
         </div>
     </footer>
 
-    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js"></script>
     <script src="./assets/js/JS.js"></script>
 </body>
