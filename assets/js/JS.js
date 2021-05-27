@@ -3,9 +3,9 @@ $(document).ready(function () {
     var lat = "";
     var lon = "";
     
-//second api to get longitude and latitude 
+//second api  
     function getWeatherAPI(a,b){
-        var secondURL = "api.openweathermap.org/data/2.5/weather?lat=" + a + "&lon=" + b +"&appid=6eecb087d2bed95fd59361a4c4bc50be"
+        var secondURL = "api.openweathermap.org/data/2.5/weather?lat=" + a + "&lon=" + b +"&appid=6eecb087d2bed95fd59361a4c4bc50be";
 
         $.ajax({
             url:secondURL,
@@ -27,9 +27,9 @@ $(document).ready(function () {
 
 
 
-//first api to find city and and date
+// captures the city input and makes API 
     function findWeather() {
-        var queryURL = "api.openweathermap.org/data/2.5/weather?id=" + cityName + "&appid=6eecb087d2bed95fd59361a4c4bc50be"
+        var queryURL = "api.openweathermap.org/data/2.5/weather?id=" + cityName + "&lang=en&appid=6eecb087d2bed95fd59361a4c4bc50be";
         
 
         $.ajax({
@@ -50,4 +50,4 @@ $(document).ready(function () {
     
         
     }
-})
+    }})
