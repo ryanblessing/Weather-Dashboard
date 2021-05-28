@@ -19,12 +19,12 @@
 
     <main class="container">
         <!--row to search for cities-->
-        <nav>
+        <nav class="col-lg-4">
             <h2>City Search: </h2>
-            <form class="container" id="city-form">
-                <div class="row">
-                    <input id="input-city" class="form-control" type="search" placeholder="Search city">
-                    <button class="btn btn-outline-primary" type="submit" id="sumbit-city">Search</button>
+            <form class="card-body" id="city-form">
+                <div class="card">
+                    <input id="input-city" class="form-control" type="search" placeholder="Search">
+                    <button class="btn btn-secondary" type="submit" id="sumbit-city">submit</button>
                 </div>
             </form>
             <!-- save the past cities-->
@@ -32,6 +32,7 @@
                 <ul class="list-group" id="saved-cities">
                 </ul>
             </section>
+        </nav>
 
             <!--current weather data-->
             <div class="col-lg-8">

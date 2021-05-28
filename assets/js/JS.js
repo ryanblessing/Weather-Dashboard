@@ -100,7 +100,7 @@ function findWeather() {
 //to be able to save the searched cities in a list option
 function savedCity() {
     cityName = localStorage.getItem("cityName");
-    if (cityName === null) {
+    if (cityName !== null) {
 
         var savedCityBLock = $("<button>");
         savedCityBLock.text(cityName);
