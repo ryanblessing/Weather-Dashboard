@@ -27,44 +27,26 @@
                     <button class="btn btn-outline-sucesss" type="submit">Search</button>
                 </div>
             </form>
+            <!-- save the past cities-->
             <section>
                 <ul class="list-group" id="saved-cities">
-
                 </ul>
             </section>
 
-
-            <!--create to hold temp-humidity- wind-uv index-->
-            <div class="col">
-                <div class="row">
-                    <div class="col" id="">
-                        <h4 id="current-city"></h4>
-                        <h3 id="date"></h3>
-                        <p>Current Weather Conditions:</p>
-                        <p id="temperature">Temperature-</p>
-                        <p id="humidity">Humidity-</p>
-                        <p id="wind-speed">Wind speed-</p>
-                        <p id="uv-index">UV Index-</p>
-                    </div>
-                    <section class="container" id="saved-cities">
-                        <div>
-                        </div>
-                    </section>
-                </div>
-            </div>
-
+            <!--current weather data-->
             <div class="col-lg-8">
-                <section class="card p-2" id="current" style="display:none;">
+                <section class="card-deck p-2" id="current-city" style="display:none;">
                     <h1 id="city"></h1>
                     <h5 id="date"></h5>
                     <p id="temp"></p>
                     <p id="humidity"></p>
                     <p id="wind"></p>
-                    <p id="uv-index">UV Index: <span class="color"></span></p>
+                    <p id="uv-index"></p>
                 </section>
-                <!--5-day forecast-->
-                <section class="mt-2 mb-2" id="five-day" style="display:none;">
-                    <h3>5-Day Forecast:</h3>
+
+                <!--5 day forecast-->
+                <section class="" id="forecast" style="display:none;">
+                    <h3>weekly forecast</h3>
                     <div class="card-deck">
                     </div>
                 </section>
