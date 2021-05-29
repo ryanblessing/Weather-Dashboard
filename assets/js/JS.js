@@ -2,9 +2,10 @@ var cityName = "";
 var lat = "";
 var lon = "";
 
+
 //second api  
 function getWeatherAPI(a, b) {
-    var secondURL = "api.openweathermap.org/data/2.5/weather?lat=" + a + "&lon=" + b + "&appid=6eecb087d2bed95fd59361a4c4bc50be";
+    var secondURL = "https://api.openweathermap.org/data/2.5/forecast?lat=" + a + "&lon=" + b + "&appid=6eecb087d2bed95fd59361a4c4bc50be";
 
     $.ajax({
         url: secondURL,
@@ -12,45 +13,48 @@ function getWeatherAPI(a, b) {
     }).then(function (response) {
         console.log(response);
 
-        //clear out the 5 day forecast from last city
-        $(".card-deck").empty();
+     
 
 
-        //if i can find a image ill append it to the page
-        /*
-        var weatherImgDisplay = response.current.weather[0].icon;
+        //icon image to append to local weather
+
+        /*var weatherImgDisplay = response.weather[0].icon;
         var weatherImg = $("<img>");
-        weatherImg.attr("src", -----find the stupid https to insert a dang image :/  )
-        $("#city").append(weatherImg);*/
+        weatherImg.attr("src", "http://openweathermap.org/img/wn/" + weatherImgDisplay + "@2x.png");
+        $("#city").append(weatherImg);
 
         ///get weather data to the html id
-        $("#temp").text("temperature; " + response.current.temp + "F");
-        $("#humidity").text("humidity; " + response.current.humidity + "%");
-        $("#wind").text("Wind; " + response.current.wind + "mph");
-        $("#uv-index").text("UV; " + response.current.uvi);
+        $("#temp").text("temp; " + response.temp + "F");
+        $("#humidity").text("humidity; " + response.humidity + "%");
+        $("#wind").text("Wind; " + response.wind + "mph");
+        $("#uv-index").text("UV; " + response.uvi);
 
-        $("#current-city").css({
+        /*$("#current-city").css({
             "display": "block"
-        });
+        });*/
 
         //4 loop to go through the daily forecast
+    
 
-        var weekly = response.weekly;
-
+        var weekly = response.list;
+        var currentDate = "";
         for (var i = 0; i < weekly.length; i++) {
             var weeklyDate = moment(weekly[i]).format("dddd, MMM Do, h:mm:ss a");
+            if(weeklyDate != currentDate) {
+                currentDate = weeklyDate
+            }
             var weeklyTemp = daily[i].temp.day;
             var weeklyHumidity = daily[i].humidity;
             //still need to find a image to insert up top for this data to work
-            /*var weeklyWeatherImg = daily[i].weather[0].icon*/
+            var weatherImgDisplay = daily[i].weather[0].icon
 
 
             //creating the elements to insert forecast in and appending them
             var weeklyDiv = $("<div class='card-deck'>");
             var date = $("<h5>");
             var temp = $("<p>");
-            var hum = $("<p>");
-            /* var imageIcon = $("<img>");*/
+            var hum = $("<p>");;
+            var weatherImgDisplay = $("<img>")
 
             date.text(weeklyDate);
             temp.text("Temp: " + weeklyTemp + "F");
@@ -61,7 +65,7 @@ function getWeatherAPI(a, b) {
             weeklyDiv.append(hum);
 
             $("#forecast").css({
-                "display": "block"
+                "display": "contents"
             });
 
 
@@ -71,30 +75,42 @@ function getWeatherAPI(a, b) {
 }
 
 
-    // captures the city input and makes API 
+// captures the city input and makes API 
 function findWeather() {
-        var queryURL = "api.openweathermap.org/data/2.5/weather?id=" + cityName + "&lang=en&appid=6eecb087d2bed95fd59361a4c4bc50be";
+    var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&lang=en&appid=6eecb087d2bed95fd59361a4c4bc50be&units=imperial";
+      
+    $.ajax({
+        url: queryURL,
+        method: "GET"
+    }).then(function (response) {
+        console.dir($("#date"))
+
+        lat = response.coord.lat;
+        lon = response.coord.lon;
+
+        $("#city").text(response.name);
+        $("#date").text(moment().format("MMMM Do YYYY, h:mm:ss a"));
+
+        var weatherImgDisplay = response.weather[0].icon;
+        var weatherImg = $("<img>");
+        weatherImg.attr("src", "http://openweathermap.org/img/wn/" + weatherImgDisplay + "@2x.png");
+        $("#city").append(weatherImg);
+
+        ///get weather data to the html id
+        $("#temp").text("temp; " + response.main.temp + "F");
+        $("#humidity").text("humidity; " + response.main.humidity + "%");
+        $("#wind").text("Wind; " + response.wind.speed + "mph");
+        //cant find uvi on API website
+
+        //$("#uv-index").text("UV; " + response.uvi);
+        localStorage.setItem("cityName", response.name);
+
+        //should pass to next function
+        getWeatherAPI(lat, lon);
+    })
 
 
-        $.ajax({
-            url: queryURL,
-            method: "GET"
-        }).then(function (response) {
-            lat = response.cords.lat;
-            lon = response.cords.lon;
-
-            $("#current-city").text(response.name);
-            $("#date").text.moment().format("MMMM Do YYYY, h:mm:ss a");
-
-            //local storage save 
-            localStorage.setItem("cityName", response.name);
-
-            //should pass to next function
-            getWeatherAPI(lat, lon);
-        })
-
-
-    }
+}
 
 
 //to be able to save the searched cities in a list option
@@ -106,16 +122,17 @@ function savedCity() {
         savedCityBLock.text(cityName);
         $("ul").prepend(savedCityBLock);
 
-     findWeather()
+        findWeather()
     }
 }
 
-function startBtn()  {
+function startBtn() {
     cityName = $("input").val().trim();
 
     //buttons are created as the user enters more cities in "search"
     var savedCityBLock = $("<button>");
     savedCityBLock.text(cityName);
+
 
     //buttons should be added and then saved/cleared 
     $("ul").prepend(savedCityBLock);
@@ -128,21 +145,22 @@ savedCity();
 
 
 //submitting the form event when city is entered
-$("#input-city").submit(function (event) {
+$("#city-form").submit(function (event) {
     event.preventDefault();
     startBtn();
 })
 
 $("#submit-city").click(function (event) {
+    console.log("run submit")
     event.preventDefault();
     startBtn();
 
 
-//click event listener
-$("ul").on("click", "button", function () {
-    cityName = $(this).text();
-    console.log(cityName);
+    //click event listener
+    /*$("ul").on("click", "button", function () {
+        cityName = $(this).text();
+        console.log(cityName);
 
-    findWeather();
-})
+        findWeather();
+    })*/
 })

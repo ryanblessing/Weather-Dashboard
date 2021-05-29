@@ -34,9 +34,12 @@
             </section>
         </nav>
 
-            <!--current weather data-->
-            <div class="col-lg-8">
-                <section class="card-deck p-2" id="current-city" style="display:none;">
+        <!--current weather data-->
+
+        <div class="col-lg-8">
+            
+                <section class="card-deck p-2" id="current-city">
+                    <div>Current Weather</div>
                     <h1 id="city"></h1>
                     <h5 id="date"></h5>
                     <p id="temp"></p>
@@ -44,14 +47,16 @@
                     <p id="wind"></p>
                     <p id="uv-index"></p>
                 </section>
+            
 
-                <!--5 day forecast-->
-                <section class="" id="forecast" style="display:none;">
-                    <h3>weekly forecast</h3>
-                    <div class="card-deck">
-                    </div>
-                </section>
-            </div>
+            <!--5 day forecast-->
+            <section class="" id="forecast" style="display: contents;">
+                <h3>weekly forecast</h3>
+                <div class="card-deck">
+                </div>
+            </section>
+        </div>
+
 
     </main>
     <footer>
