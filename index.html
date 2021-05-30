@@ -17,9 +17,9 @@
         <h1>Weather Dashboard</h1>
     </header>
 
-    <main class="container">
+    <main class="container-fluid">
         <!--row to search for cities-->
-        <nav class="col-lg-4">
+        <nav class="col-md-2">
             <h2>City Search: </h2>
             <form class="card-body" id="city-form">
                 <div class="card">
@@ -28,34 +28,38 @@
                 </div>
             </form>
             <!-- save the past cities-->
-            <section>
-                <ul class="list-group" id="saved-cities">
+            <section class="">
+                <ul class="list-group list list-group-flush" id="saved-cities">
                 </ul>
             </section>
         </nav>
 
         <!--current weather data-->
 
-        <div class="col-lg-8">
-            
-                <section class="card-deck p-2" id="current-city">
-                    <div>Current Weather</div>
-                    <h1 id="city"></h1>
+        <div class="container-fluid">
+            <h3>Current Weather</h3>
+            <section class="card-body" id="current-city">
+                <h2 class="card-title" id="city"></h2>
+                <div class="car-body">
                     <h5 id="date"></h5>
                     <p id="temp"></p>
                     <p id="humidity"></p>
                     <p id="wind"></p>
                     <p id="uv-index"></p>
-                </section>
-            
-
-            <!--5 day forecast-->
-            <section class="" id="forecast" style="display: contents;">
-                <h3>weekly forecast</h3>
-                <div class="card-deck">
                 </div>
-            </section>
         </div>
+        </section>
+
+
+        <!--5 day forecast-->
+
+        <section class="row" id="forecast" style="display: contents;">
+            <div class="col-8">
+                <h3>weekly forecast</h3>
+                <div class="card-deck" id="weekly-div"></div>
+            </div>
+        </section>
+
 
 
     </main>

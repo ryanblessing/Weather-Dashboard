@@ -13,48 +13,30 @@ function getWeatherAPI(a, b) {
     }).then(function (response) {
         console.log(response);
 
-     
-
-
-        //icon image to append to local weather
-
-        /*var weatherImgDisplay = response.weather[0].icon;
-        var weatherImg = $("<img>");
-        weatherImg.attr("src", "http://openweathermap.org/img/wn/" + weatherImgDisplay + "@2x.png");
-        $("#city").append(weatherImg);
-
-        ///get weather data to the html id
-        $("#temp").text("temp; " + response.temp + "F");
-        $("#humidity").text("humidity; " + response.humidity + "%");
-        $("#wind").text("Wind; " + response.wind + "mph");
-        $("#uv-index").text("UV; " + response.uvi);
-
-        /*$("#current-city").css({
-            "display": "block"
-        });*/
-
-        //4 loop to go through the daily forecast
-    
-
-        var weekly = response.list;
+        ;
+        var weekly = response.list.main;
         var currentDate = "";
+
         for (var i = 0; i < weekly.length; i++) {
-            var weeklyDate = moment(weekly[i]).format("dddd, MMM Do, h:mm:ss a");
-            if(weeklyDate != currentDate) {
+            var currentDate = moment(weekly[i]).format("dddd, MMM Do, h:mm:ss a");
+            if (weeklyDate != currentDate) {
                 currentDate = weeklyDate
             }
-            var weeklyTemp = daily[i].temp.day;
-            var weeklyHumidity = daily[i].humidity;
+        
+            
+            var weeklyTemp = list[i].temp.day;
+            var weeklyHumidity = list[i].humidity;
             //still need to find a image to insert up top for this data to work
             var weatherImgDisplay = daily[i].weather[0].icon
 
 
             //creating the elements to insert forecast in and appending them
-            var weeklyDiv = $("<div class='card-deck'>");
+            var weeklyDiv = $("<div id=`weekly-div`>");
             var date = $("<h5>");
             var temp = $("<p>");
             var hum = $("<p>");;
             var weatherImgDisplay = $("<img>")
+
 
             date.text(weeklyDate);
             temp.text("Temp: " + weeklyTemp + "F");
@@ -63,9 +45,10 @@ function getWeatherAPI(a, b) {
             weeklyDiv.append(date);
             weeklyDiv.append(temp);
             weeklyDiv.append(hum);
+            
 
             $("#forecast").css({
-                "display": "contents"
+                "display": weekly
             });
 
 
@@ -78,7 +61,7 @@ function getWeatherAPI(a, b) {
 // captures the city input and makes API 
 function findWeather() {
     var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&lang=en&appid=6eecb087d2bed95fd59361a4c4bc50be&units=imperial";
-      
+
     $.ajax({
         url: queryURL,
         method: "GET"
@@ -100,7 +83,7 @@ function findWeather() {
         $("#temp").text("temp; " + response.main.temp + "F");
         $("#humidity").text("humidity; " + response.main.humidity + "%");
         $("#wind").text("Wind; " + response.wind.speed + "mph");
-        //cant find uvi on API website
+
 
         //$("#uv-index").text("UV; " + response.uvi);
         localStorage.setItem("cityName", response.name);
@@ -157,10 +140,10 @@ $("#submit-city").click(function (event) {
 
 
     //click event listener
-    /*$("ul").on("click", "button", function () {
+    $("ul").on("click", "button", function () {
         cityName = $(this).text();
         console.log(cityName);
 
         findWeather();
-    })*/
+    })
 })
