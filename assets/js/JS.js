@@ -16,14 +16,14 @@ function getWeatherAPI(a, b) {
         ;
         var weekly = response.list.main;
         var currentDate = "";
+    
 
         for (var i = 0; i < weekly.length; i++) {
             var currentDate = moment(weekly[i]).format("dddd, MMM Do, h:mm:ss a");
-            if (weeklyDate != currentDate) {
-                currentDate = weeklyDate
+            if (weeklyDate === currentDate) {
+                $(weekly[i]).attr("card-deck")
             }
-        
-            
+
             var weeklyTemp = list[i].temp.day;
             var weeklyHumidity = list[i].humidity;
             //still need to find a image to insert up top for this data to work
